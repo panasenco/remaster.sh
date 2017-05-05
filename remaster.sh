@@ -15,7 +15,7 @@ function print_separator {
 function install_pre_reqs {
     read -p "Install pre-reqs? > " resp && [[ $resp =~ $yespat ]] && {
         echo "Installing or updating squashfs-tools and syslinux"
-        sudo apt-get update && sudo apt-get install squashfs-tools syslinux
+        sudo apt-get update && sudo apt-get install squashfs-tools syslinux syslinux-utils genisoimage
     }
 }
 
