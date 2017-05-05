@@ -21,5 +21,5 @@ sudo mkdir extract-cd
 # Copy all the ISO's innards except for filesystem.squashfs to extract-cd/
 sudo rsync --exclude=/casper/filesystem.squashfs -a mnt/ extract-cd
 # Expand the squashed filesystem and put it into ./livecdtmp/edit so we can update the squashed filesystem with our new values it needs to boot and install properly
-sudo unsquashfs mnt/casper/filesystem.squashfs
+sudo unsquashfs mnt/install/filesystem.squashfs
 sudo mv squashfs-root edit
