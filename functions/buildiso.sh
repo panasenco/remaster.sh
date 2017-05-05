@@ -1,15 +1,15 @@
 cd $APP_ROOT/livecdtmp
 
 # Step 6:
-sudo chmod +w extract-cd/casper/filesystem.manifest
-echo "chroot edit dpkg-query -W --showformat='${Package} ${Version}\n' > extract-cd/casper/filesystem.manifest" | sudo sh >> ./remaster.log
-sudo cp extract-cd/casper/filesystem.manifest extract-cd/casper/filesystem.manifest-desktop
-sudo sed -i '/ubiquity/d' extract-cd/casper/filesystem.manifest-desktop
-sudo sed -i '/casper/d' extract-cd/casper/filesystem.manifest-desktop
-sudo rm extract-cd/casper/filesystem.squashfs
-sudo mksquashfs edit extract-cd/casper/filesystem.squashfs
+sudo chmod +w extract-cd/install/filesystem.manifest
+echo "chroot edit dpkg-query -W --showformat='${Package} ${Version}\n' > extract-cd/install/filesystem.manifest" | sudo sh >> ./remaster.log
+sudo cp extract-cd/install/filesystem.manifest extract-cd/install/filesystem.manifest-desktop
+sudo sed -i '/ubiquity/d' extract-cd/install/filesystem.manifest-desktop
+sudo sed -i '/install/d' extract-cd/install/filesystem.manifest-desktop
+sudo rm extract-cd/install/filesystem.squashfs
+sudo mksquashfs edit extract-cd/install/filesystem.squashfs
 ISO_SIZE=`sudo du -sx --block-size=1 edit | cut -f1`
-echo "printf $ISO_SIZE > extract-cd/casper/filesystem.size" | sudo sh >> ./remaster.log
+echo "printf $ISO_SIZE > extract-cd/install/filesystem.size" | sudo sh >> ./remaster.log
 sudo nano extract-cd/README.diskdefines
 sudo rm extract-cd/md5sum.txt
 echo "find extract-cd/ -type f -print0 | xargs -0 md5sum | grep -v extract-cd/isolinux/boot.cat | tee extract-cd/md5sum.txt" | sudo sh >> ./remaster.log
